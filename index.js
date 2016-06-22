@@ -11,20 +11,13 @@ justNameComponent = function(name, id) {
 }
 
 module.exports.justNameComponent = justNameComponent;
-module.exports.fullPath = function(name, id, lat, lon) {
+module.exports.canonicalPathForPlace = function(name, id) {
   if (
     typeof name === 'undefined' ||
-    typeof id === 'undefined' ||
-    typeof lat === 'undefined' ||
-    typeof lon === 'undefined'
+    typeof id === 'undefined'
   ) {
     throw 'Missing required paramater for place url generator';
   }
-
-  var humanLat = lat.toFixed(5);
-  var humanLon = lon.toFixed(5);
-
-  var path = `/${humanLat}/${humanLon}/zoom16/place`;
 
   var prettyName;
   if (name) {
@@ -33,5 +26,5 @@ module.exports.fullPath = function(name, id, lat, lon) {
     prettyName = id;
   }
 
-  return `${path}/${prettyName}`;
+  return `/place/${prettyName}`;
 }

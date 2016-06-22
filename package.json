@@ -1,0 +1,22 @@
+{
+  "name": "place-url-generator",
+  "version": "1.0.0",
+  "description": "Unified logic for generating URLs for places on Hivemapper.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodeunit test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hivemapper/place-url-generator.git"
+  },
+  "author": "Dane Pieri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hivemapper/place-url-generator/issues"
+  },
+  "homepage": "https://github.com/Hivemapper/place-url-generator#readme",
+  "devDependencies": {
+    "nodeunit": "^0.9.1"
+  }
+}

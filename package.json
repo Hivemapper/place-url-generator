@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Unified logic for generating URLs for places on Hivemapper.com",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "nodeunit test.js"
   },

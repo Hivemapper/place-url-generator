@@ -7,7 +7,7 @@ justNameComponent = function(name, id) {
     .replace(/-+$/, '');            // Trim - from end of text;
   prettyName = prettyName.substring(0,35);
 
-  return `${prettyName}-${id}`;
+  return prettyName + '-' + id;
 }
 
 module.exports.justNameComponent = justNameComponent;
@@ -26,7 +26,7 @@ module.exports.canonicalPathForPlace = function(name, id) {
     prettyName = id;
   }
 
-  return `/place/${prettyName}`;
+  return '/place/' + prettyName;
 }
 
 module.exports.placeIdFromSlug = function(slug) {

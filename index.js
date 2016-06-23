@@ -28,3 +28,8 @@ module.exports.canonicalPathForPlace = function(name, id) {
 
   return `/place/${prettyName}`;
 }
+
+module.exports.placeIdFromSlug = function(slug) {
+  var slugArray = slug.split('-');
+  return slugArray[slugArray.length -1];
+}

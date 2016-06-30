@@ -29,6 +29,24 @@ module.exports.canonicalPathForPlace = function(name, id) {
   return '/place/' + prettyName;
 }
 
+module.exports.canonicalPathForNFZ = function(name, id) {
+  if (
+    typeof name === 'undefined' ||
+    typeof id === 'undefined'
+  ) {
+    throw 'Missing required paramater for no-fly zone url generator';
+  }
+
+  var prettyName;
+  if (name) {
+    prettyName = justNameComponent(name, id);
+  } else {
+    prettyName = id;
+  }
+
+  return '/no-fly-zone/' + prettyName;
+}
+
 module.exports.placeIdFromSlug = function(slug) {
   var slugArray = slug.split('-');
   return slugArray[slugArray.length -1];

@@ -1,11 +1,14 @@
 var myModule = require('./index.js');
 var canonicalPathForPlace = myModule.canonicalPathForPlace;
+var canonicalPathForNFZ = myModule.canonicalPathForNFZ;
 var placeIdFromSlug = myModule.placeIdFromSlug;
 
 exports.simpleName = function(test) {
   var path = canonicalPathForPlace('Place Name', 'asdf1234', 21.12345, -110.12345);
-  test.expect(1)
-  test.equal(path, '/place/place-name-asdf1234')
+  var nfzPath = canonicalPathForNFZ('NFZ Name', 'asdf1234', 21.12345, -110.12345);
+  test.expect(2)
+  test.equal(path, '/place/place-name-asdf1234');
+  test.equal(nfzPath, '/no-fly-zone/nfz-name-asdf1234');
   test.done();
 };
 
@@ -18,8 +21,10 @@ exports.hyphenInName = function(test) {
 
 exports.specialCharacters = function(test) {
   var path = canonicalPathForPlace("Place Name ./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?-", 'asdf1234', 21.12345, -110.12345);
-  test.expect(1)
+  var nfzPath = canonicalPathForNFZ("NFZ Name ./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?-", 'asdf1234', 21.12345, -110.12345);
+  test.expect(2)
   test.equal(path, '/place/place-name-asdf1234')
+  test.equal(nfzPath, '/no-fly-zone/nfz-name-asdf1234')
   test.done();
 };
 

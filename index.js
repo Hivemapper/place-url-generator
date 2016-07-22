@@ -47,18 +47,18 @@ module.exports.canonicalPathForNFZ = function(name, id) {
   return '/no-fly-zone/' + prettyName;
 }
 
-module.exports.canonicalPathForArea = function(name, state, id) {
+module.exports.canonicalPathForArea = function(name, stateName, id) {
   if (
     typeof name === 'undefined' ||
-    typeof state === 'undefined' ||
+    typeof stateName === 'undefined' ||
     typeof id === 'undefined'
   ) {
     throw 'Missing required paramater for area url generator';
   }
 
   var prettyName;
-  if (name && state) {
-    var nameStateCombined = name + ', ' + state;
+  if (name && stateName) {
+    var nameStateCombined = name + ', ' + stateName;
     prettyName = justNameComponent(nameStateCombined, id);
   } else {
     prettyName = id;

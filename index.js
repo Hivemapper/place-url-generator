@@ -47,6 +47,26 @@ module.exports.canonicalPathForNFZ = function(name, id) {
   return '/no-fly-zone/' + prettyName;
 }
 
+module.exports.canonicalPathForArea = function(name, state, id) {
+  if (
+    typeof name === 'undefined' ||
+    typeof state === 'undefined' ||
+    typeof id === 'undefined'
+  ) {
+    throw 'Missing required paramater for area url generator';
+  }
+
+  var prettyName;
+  if (name && state) {
+    var nameStateCombined = name + ', ' + state;
+    prettyName = justNameComponent(nameStateCombined, id);
+  } else {
+    prettyName = id;
+  }
+
+  return '/area/' + prettyName;
+}
+
 module.exports.placeIdFromSlug = function(slug) {
   var slugArray = slug.split('-');
   return slugArray[slugArray.length -1];

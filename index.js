@@ -1,13 +1,21 @@
+var localityUtils = require('locality-utils').default;
+
 justNameComponent = function(name, id) {
-  prettyName = name.toString().toLowerCase()
+  var pathName = nameToPathParam(name);
+
+  return pathName + '-' + id;
+}
+
+nameToPathParam = function(name) {
+  var pathName = name.toString().toLowerCase()
     .replace(/\s+/g, '-')           // Replace spaces with -
     .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
     .replace(/\-\-+/g, '-')         // Replace multiple - with single -
     .replace(/^-+/, '')             // Trim - from start of text
     .replace(/-+$/, '');            // Trim - from end of text;
-  prettyName = prettyName.substring(0,35);
+  pathName = pathName.substring(0,35);
 
-  return prettyName + '-' + id;
+  return pathName;
 }
 
 module.exports.justNameComponent = justNameComponent;
@@ -47,24 +55,27 @@ module.exports.canonicalPathForNFZ = function(name, id) {
   return '/no-fly-zone/' + prettyName;
 }
 
-module.exports.canonicalPathForArea = function(name, stateName, id) {
+module.exports.canonicalPathForArea = function(
+  {name, stateCode, typeCode, id} = {}
+) {
   if (
     typeof name === 'undefined' ||
-    typeof stateName === 'undefined' ||
+    typeof stateCode === 'undefined' ||
+    typeof typeCode === 'undefined' ||
     typeof id === 'undefined'
   ) {
     throw 'Missing required paramater for area url generator';
   }
 
-  var prettyName;
-  if (name && stateName) {
-    var nameStateCombined = name + ', ' + stateName;
-    prettyName = justNameComponent(nameStateCombined, id);
-  } else {
-    prettyName = id;
-  }
+  var pathStateName = nameToPathParam(
+    localityUtils.stateCodeToString(stateCode)
+  );
+  var pathAreaType = nameToPathParam(
+    localityUtils.typeCodeToString(typeCode)
+  );
+  var prettyName = justNameComponent(name, id);
 
-  return '/area/' + prettyName;
+  return '/state/' + pathStateName + '/' + pathAreaType + '/' + prettyName;
 }
 
 module.exports.placeIdFromSlug = function(slug) {

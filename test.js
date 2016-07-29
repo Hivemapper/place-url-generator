@@ -7,20 +7,30 @@ var placeIdFromSlug = myModule.placeIdFromSlug;
 exports.simpleName = function(test) {
   var path = canonicalPathForPlace('Place Name', 'asdf1234');
   var nfzPath = canonicalPathForNFZ('NFZ Name', 'asdf1234');
-  var areaPath = canonicalPathForArea('Casco', 'Maine', 'asdf1234');
+  var areaPath = canonicalPathForArea({
+    name: 'Casco',
+    stateCode: '23',
+    typeCode: 'B5',
+    id: 'asdf1234'
+  });
   test.expect(3)
   test.equal(path, '/place/place-name-asdf1234');
   test.equal(nfzPath, '/no-fly-zone/nfz-name-asdf1234');
-  test.equal(areaPath, '/area/casco-maine-asdf1234');
+  test.equal(areaPath, '/state/maine/town/casco-asdf1234');
   test.done();
 };
 
 exports.hyphenInName = function(test) {
   var path = canonicalPathForPlace('Place - Name', 'asdf1234');
-  var areaPath = canonicalPathForArea('Ingold - Mildale', 'California', 'asdf1234');
+  var areaPath = canonicalPathForArea({
+    name: 'Ingold - Mildale',
+    stateCode: '23',
+    typeCode: '57',
+    id: 'asdf1234'
+  });
   test.expect(2)
   test.equal(path, '/place/place-name-asdf1234')
-  test.equal(areaPath, '/area/ingold-mildale-california-asdf1234')
+  test.equal(areaPath, '/state/maine/census-designated-place/ingold-mildale-asdf1234');
   test.done();
 };
 

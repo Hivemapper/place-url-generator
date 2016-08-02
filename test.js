@@ -1,21 +1,24 @@
 var myModule = require('./index.js');
 var canonicalPathForPlace = myModule.canonicalPathForPlace;
 var canonicalPathForNFZ = myModule.canonicalPathForNFZ;
+var canonicalPathForState = myModule.canonicalPathForState;
 var canonicalPathForArea = myModule.canonicalPathForArea;
 var placeIdFromSlug = myModule.placeIdFromSlug;
 
 exports.simpleName = function(test) {
   var path = canonicalPathForPlace('Place Name', 'asdf1234');
   var nfzPath = canonicalPathForNFZ('NFZ Name', 'asdf1234');
+  var statePath = canonicalPathForState('23');
   var areaPath = canonicalPathForArea({
     name: 'Casco',
     stateCode: '23',
     typeCode: 'B5',
     id: 'asdf1234'
   });
-  test.expect(3)
+  test.expect(4)
   test.equal(path, '/place/place-name-asdf1234');
   test.equal(nfzPath, '/no-fly-zone/nfz-name-asdf1234');
+  test.equal(statePath, '/state/maine');
   test.equal(areaPath, '/state/maine/town/casco-asdf1234');
   test.done();
 };

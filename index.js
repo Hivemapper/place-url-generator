@@ -55,6 +55,20 @@ module.exports.canonicalPathForNFZ = function(name, id) {
   return '/no-fly-zone/' + prettyName;
 }
 
+module.exports.canonicalPathForState = function(stateCode) {
+  if (
+    typeof stateCode === 'undefined'
+  ) {
+    throw 'Missing required paramater for state url generator';
+  }
+
+  var pathStateName = nameToPathParam(
+    localityUtils.stateCodeToString(stateCode)
+  );
+
+  return '/state/' + pathStateName;
+}
+
 module.exports.canonicalPathForArea = function(
   {name, stateCode, typeCode, id} = {}
 ) {

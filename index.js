@@ -69,7 +69,7 @@ module.exports.canonicalPathForState = function(stateCode) {
   return '/state/' + pathStateName;
 }
 
-module.exports.canonicalPathForArea = function(
+var localityFunciton = function(
   {name, stateCode, typeCode, id} = {}
 ) {
   if (
@@ -91,6 +91,8 @@ module.exports.canonicalPathForArea = function(
 
   return '/state/' + pathStateName + '/' + pathAreaType + '/' + prettyName;
 }
+module.exports.canonicalPathForArea = localityFunciton;
+module.exports.canonicalPathForLocality = localityFunciton;
 
 module.exports.placeIdFromSlug = function(slug) {
   var slugArray = slug.split('-');

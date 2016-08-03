@@ -69,7 +69,7 @@ module.exports.canonicalPathForState = function(stateCode) {
   return '/state/' + pathStateName;
 }
 
-var localityFunciton = function(
+function localityFunciton(
   {name, stateCode, typeCode, id} = {}
 ) {
   if (

@@ -12,7 +12,7 @@ exports.simpleName = function(test) {
   var areaPath = canonicalPathForArea({
     name: 'Casco',
     stateCode: '23',
-    typeCode: 'B5',
+    typeCode: '43',
     id: 'asdf1234'
   });
   test.expect(4)

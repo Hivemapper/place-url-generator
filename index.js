@@ -69,25 +69,23 @@ module.exports.canonicalPathForState = function(stateCode) {
   return '/state/' + pathStateName;
 }
 
-function localityFunciton(
-  {name, stateCode, typeCode, id} = {}
-) {
+function localityFunciton(options) {
   if (
-    typeof name === 'undefined' ||
-    typeof stateCode === 'undefined' ||
-    typeof typeCode === 'undefined' ||
-    typeof id === 'undefined'
+    typeof options.name === 'undefined' ||
+    typeof options.stateCode === 'undefined' ||
+    typeof options.typeCode === 'undefined' ||
+    typeof options.id === 'undefined'
   ) {
     throw 'Missing required paramater for area url generator';
   }
 
   var pathStateName = nameToPathParam(
-    localityUtils.stateCodeToString(stateCode)
+    localityUtils.stateCodeToString(options.stateCode)
   );
   var pathAreaType = nameToPathParam(
-    localityUtils.typeCodeToString(typeCode)
+    localityUtils.typeCodeToString(options.typeCode)
   );
-  var prettyName = justNameComponent(name, id);
+  var prettyName = justNameComponent(options.name, options.id);
 
   return '/state/' + pathStateName + '/' + pathAreaType + '/' + prettyName;
 }

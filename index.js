@@ -1,19 +1,19 @@
 var localityUtils = require('locality-utils').default;
 
-justNameComponent = function(name, id) {
-  var pathName = nameToPathParam(name);
+justNameComponent = function(name, id, maxLength=35) {
+  var pathName = nameToPathParam(name, maxLength);
 
   return pathName + '-' + id;
 }
 
-nameToPathParam = function(name) {
+nameToPathParam = function(name, maxLength) {
   var pathName = name.toString().toLowerCase()
     .replace(/\s+/g, '-')           // Replace spaces with -
     .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
     .replace(/\-\-+/g, '-')         // Replace multiple - with single -
     .replace(/^-+/, '')             // Trim - from start of text
     .replace(/-+$/, '');            // Trim - from end of text;
-  pathName = pathName.substring(0,35);
+  pathName = pathName.substring(0, maxLength);
 
   return pathName;
 }
@@ -95,4 +95,22 @@ module.exports.canonicalPathForLocality = localityFunciton;
 module.exports.placeIdFromSlug = function(slug) {
   var slugArray = slug.split('-');
   return slugArray[slugArray.length -1];
+}
+
+module.exports.canonicalPathForVideo = function(name, id) {
+  if (
+    typeof name === 'undefined' ||
+    typeof id === 'undefined'
+  ) {
+    throw 'Missing required paramater for video url generator';
+  }
+
+  var prettyName;
+  if (name) {
+    prettyName = justNameComponent(name, id, 500);
+  } else {
+    prettyName = id;
+  }
+
+  return '/video/' + prettyName;
 }

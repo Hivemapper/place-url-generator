@@ -99,7 +99,6 @@ module.exports.placeIdFromSlug = function(slug) {
 
 module.exports.canonicalPathForVideo = function(name, id) {
   if (
-    typeof name === 'undefined' ||
     typeof id === 'undefined'
   ) {
     throw 'Missing required paramater for video url generator';

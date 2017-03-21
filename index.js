@@ -2,9 +2,13 @@ var localityUtils = require('locality-utils').default;
 
 justNameComponent = function(name, id, maxLength) {
   var pathName = nameToPathParam(name, maxLength);
+  if (id) {
+    pathName += '-' + id;
+  }
 
-  return pathName + '-' + id;
+  return pathName;
 }
+module.exports.justNameComponent = justNameComponent;
 
 nameToPathParam = function(name, maxLength=35) {
   var pathName = name.toString().toLowerCase()
@@ -17,9 +21,6 @@ nameToPathParam = function(name, maxLength=35) {
 
   return pathName;
 }
-
-module.exports.justNameComponent = justNameComponent;
-module.exports.nameToPathParam = nameToPathParam;
 
 module.exports.canonicalPathForPlace = function(name, id) {
   if (
@@ -97,6 +98,10 @@ module.exports.canonicalPathForLocality = localityFunciton;
 module.exports.placeIdFromSlug = function(slug) {
   var slugArray = slug.split('-');
   return slugArray[slugArray.length -1];
+}
+
+module.exports.videoNameToPathComponent = function(name) {
+  return justNameComponent(name, null, 500);
 }
 
 module.exports.canonicalPathForVideo = function(name, id) {

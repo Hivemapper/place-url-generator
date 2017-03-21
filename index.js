@@ -19,6 +19,8 @@ nameToPathParam = function(name, maxLength) {
 }
 
 module.exports.justNameComponent = justNameComponent;
+module.exports.nameToPathParam = nameToPathParam;
+
 module.exports.canonicalPathForPlace = function(name, id) {
   if (
     typeof name === 'undefined' ||

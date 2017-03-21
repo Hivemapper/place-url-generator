@@ -1,12 +1,12 @@
 var localityUtils = require('locality-utils').default;
 
-justNameComponent = function(name, id, maxLength=35) {
+justNameComponent = function(name, id, maxLength) {
   var pathName = nameToPathParam(name, maxLength);
 
   return pathName + '-' + id;
 }
 
-nameToPathParam = function(name, maxLength) {
+nameToPathParam = function(name, maxLength=35) {
   var pathName = name.toString().toLowerCase()
     .replace(/\s+/g, '-')           // Replace spaces with -
     .replace(/[^\w\-]+/g, '')       // Remove all non-word chars

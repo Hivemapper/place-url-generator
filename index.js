@@ -10,7 +10,10 @@ justNameComponent = function(name, id, maxLength) {
 }
 module.exports.justNameComponent = justNameComponent;
 
-nameToPathParam = function(name, maxLength=35) {
+nameToPathParam = function(name, maxLength) {
+  if (!maxLength) {
+    maxLength = 35;
+  }
   var pathName = name.toString().toLowerCase()
     .replace(/\s+/g, '-')           // Replace spaces with -
     .replace(/[^\w\-]+/g, '')       // Remove all non-word chars

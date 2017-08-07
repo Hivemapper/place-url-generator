@@ -106,20 +106,3 @@ module.exports.placeIdFromSlug = function(slug) {
 module.exports.videoNameToPathComponent = function(name) {
   return justNameComponent(name, null, 500);
 }
-
-module.exports.canonicalPathForVideo = function(name, id) {
-  if (
-    typeof id === 'undefined'
-  ) {
-    throw 'Missing required paramater for video url generator';
-  }
-
-  var prettyName;
-  if (name) {
-    prettyName = justNameComponent(name, id, 500);
-  } else {
-    prettyName = id;
-  }
-
-  return '/video/' + prettyName;
-}

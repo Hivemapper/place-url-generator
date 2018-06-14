@@ -1,6 +1,6 @@
 var localityUtils = require('locality-utils').default;
 
-justNameComponent = function(name, id, maxLength) {
+function justNameComponent(name, id, maxLength) {
   var pathName = nameToPathParam(name, maxLength);
   if (id) {
     pathName += '-' + id;
@@ -10,7 +10,7 @@ justNameComponent = function(name, id, maxLength) {
 }
 module.exports.justNameComponent = justNameComponent;
 
-nameToPathParam = function(name, maxLength) {
+function nameToPathParam(name, maxLength) {
   if (!maxLength) {
     maxLength = 35;
   }

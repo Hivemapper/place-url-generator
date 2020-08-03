@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Hivemapper/place-url-generator#readme",
   "dependencies": {
-    "locality-utils": "git+ssh://git@github.com:Hivemapper/locality-utils.git#9d59a52"
+    "locality-utils": "git+https://github.com/Hivemapper/locality-utils#9d59a52"
   },
   "devDependencies": {
     "nodeunit": "^0.9.1"
